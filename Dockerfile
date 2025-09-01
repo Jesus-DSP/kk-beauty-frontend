@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Copy project files
 COPY . .
@@ -20,16 +20,22 @@ ENV CI=false
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install serve globally
+RUN npm install -g serve
 
 # Copy built assets from builder stage
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/package.json ./
 
-# Copy nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Default to port 3000 if not set
+ENV PORT=3000
 
-# Expose port
-EXPOSE 80
+# Expose the port
+EXPOSE $PORT
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the app
+CMD ["sh", "-c", "serve -s build -l $PORT"]
