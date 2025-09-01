@@ -12,9 +12,13 @@ RUN npm ci
 # Copy project files
 COPY . .
 
-# Set environment variable to disable ESLint during build
+# Set environment variables for build
 ENV DISABLE_ESLINT_PLUGIN=true
 ENV CI=false
+ARG REACT_APP_STRIPE_PUBLISHABLE_KEY
+ENV REACT_APP_STRIPE_PUBLISHABLE_KEY=$REACT_APP_STRIPE_PUBLISHABLE_KEY
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 # Build the app
 RUN npm run build
