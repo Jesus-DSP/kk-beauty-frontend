@@ -307,7 +307,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const [, setSuccess] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState<{
     type: 'success' | 'error';

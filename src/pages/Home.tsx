@@ -23,35 +23,6 @@ const Page = styled.main`
   }
 `;
 
-const BrandRow = styled.div`
-  text-align: center;
-  font-size: 18px;
-  font-weight: 700;
-  padding: 12px 0;
-`;
-
-const MediaStrip = styled.div`
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding: 8px;
-  scroll-snap-type: x mandatory;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const MediaItem = styled.img`
-  flex: 0 0 auto;
-  width: 96px;
-  height: 96px;
-  border-radius: 12px;
-  object-fit: cover;
-  scroll-snap-align: center;
-`;
-
 const Card = styled.section`
   background: #161616;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -76,6 +47,7 @@ const Banner = styled.img`
   aspect-ratio: 16/9;
   margin: 12px 0;
 `;
+
 const NewsletterForm = styled.form`
   display: flex;
   width: 100%;
